@@ -18,7 +18,7 @@ df = conn.read(
 
 st.dataframe(df)
 
-sql = 'SELECT * FROM Bigbooks WHERE log_id >= 1'
+sql = 'SELECT log_id, date, desc, in, out FROM Bigbooks WHERE log_id >= 1'
 data = conn.query(sql = sql)
 st.dataframe(data)
 
