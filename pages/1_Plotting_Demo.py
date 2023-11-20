@@ -18,11 +18,23 @@ df = conn.read(
 
 st.dataframe(df)
 
-sql = 'SELECT * FROM Bigbooks'
+sql = 'SELECT * FROM Bigbooks;'
 data = conn.query(sql = sql)
 st.dataframe(data)
 
 # Taking actions based on user input
+if st.button("Total Pemasukan"):
+    sql = 'SELECT SUM("in") as "Pemasukan" FROM Bigbooks;'
+    total_pemasukan = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
+    st.dataframe(total_pemasukan)
+
+if st.button("Total Pengeluaran"):
+    sql = 'SELECT SUM("out") as "Pengeluaran" FROM Bigbooks;'
+    total_pengeluaran = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
+    st.dataframe(total_pengeluaran)
+
+
+
 if st.button("New Worksheet"):
     conn.create(worksheet="Orders", data=orders)
     st.success("Worksheet Created 🎉")
