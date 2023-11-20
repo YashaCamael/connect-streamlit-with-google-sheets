@@ -41,8 +41,8 @@ if st.button("Uang Kas Terakhir"):
     total_kas = total_pemasukan.values - total_pengeluaran.values
     st.dataframe(total_kas)
 
-year1 = st.text_input('Masukan Tahun Awal')
-year2 = st.text_input('Masukan Tahun Akhir')
+input1 = st.text_input('Masukan Tahun Awal')
+input2 = st.text_input('Masukan Tahun Akhir')
 
 if st.button("Hasil Range Tahun"):
     sql = 'SELECT * FROM Bigbooks WHERE date BETWEEN :year1 AND :year2;'
