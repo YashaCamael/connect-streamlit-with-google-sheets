@@ -6,16 +6,21 @@ st.title("View DataBase")
 
 st.write("CRUD Operations:")
 # Establishing a Google Sheets connection
-conn = st.experimental_connection("gsheets", type=GSheetsConnection)
+conn = st.connection("gsheets", type=GSheetsConnection)
 
+# Menampilkan worksheet Buku Besar
 df = conn.read(
     worksheet="Buku Besar",
     ttl="10m",
-    usecols=[0, 1],
-    nrows=3,
+    usecols=[0, 1, 2, 3, 4, 5],
+    nrows=10,
 )
 
 st.dataframe(df)
+
+sql = 'SELECT * FROM Bigbooks'
+data = conn.query(sql = sql)
+st.dataframe(data)
 
 # Taking actions based on user input
 if st.button("New Worksheet"):
