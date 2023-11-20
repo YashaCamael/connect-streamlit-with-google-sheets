@@ -39,7 +39,7 @@ if st.button("New Worksheet"):
 
 if st.button("Calculate Total Orders Sum"):
     sql = 'SELECT SUM("TotalPrice") as "TotalOrdersPrice" FROM Orders;'
-    total_orders = conn.query(sql=sql)  # default ttl=3600 seconds / 60 min
+    total_orders = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
     st.dataframe(total_orders)
 
 if st.button("Update Worksheet"):
