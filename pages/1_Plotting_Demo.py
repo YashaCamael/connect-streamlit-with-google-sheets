@@ -41,6 +41,14 @@ if st.button("Uang Kas Terakhir"):
     total_kas = total_pemasukan.values - total_pengeluaran.values
     st.dataframe(total_kas)
 
+year1 = st.text_input('Masukan Tahun Awal')
+year2 = st.text_input('Masukan Tahun Akhir')
+
+if st.button("Hasil Range Tahun"):
+    sql = 'SELECT * FROM Bigbooks WHERE date BETWEEN :year1 AND :year2;'
+    range = conn.query(sql=sql, ttl=10, params={"year1"=input1,"year2"=input2})  # default ttl=3600 seconds / 60 min
+    st.dataframe(range)
+
 if st.button("New Worksheet"):
     conn.create(worksheet="Orders", data=orders)
     st.success("Worksheet Created 🎉")
