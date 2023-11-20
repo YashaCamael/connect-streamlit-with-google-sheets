@@ -18,7 +18,7 @@ df = conn.read(
 
 st.dataframe(df)
 
-sql = 'SELECT * FROM Bigbooks'
+sql = 'SELECT * FROM Bigbooks WHERE log_id != NULL'
 data = conn.query(sql = sql)
 st.dataframe(data)
 
