@@ -32,6 +32,8 @@ st.write("CRUD Operations:")
 # Establishing a Google Sheets connection
 conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 
+df = conn.read(worksheet="Buku Besar")
+
 # Taking actions based on user input
 if st.button("New Worksheet"):
     conn.create(worksheet="Orders", data=orders)
