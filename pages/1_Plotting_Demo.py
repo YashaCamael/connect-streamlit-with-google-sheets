@@ -10,7 +10,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Menampilkan worksheet Buku Besar
 df = conn.read(
-    worksheet="Buku Besar",
+    worksheet="Bigbooks",
     ttl="10m",
     usecols=[0, 1, 2, 3, 4, 5],
     nrows=10,
