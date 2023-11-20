@@ -33,7 +33,13 @@ if st.button("Total Pengeluaran"):
     total_pengeluaran = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
     st.dataframe(total_pengeluaran)
 
-
+if st.button("Uang Kas Terakhir"):
+    sql = 'SELECT SUM("out") as "Pengeluaran" FROM Bigbooks;'
+    total_pengeluaran = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
+    sql = 'SELECT SUM("in") as "Pemasukan" FROM Bigbooks;'
+    total_pemasukan = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
+    total_kas = total_pemasukan.values - total_pengeluaran.values
+    st.dataframe(total_kas)
 
 if st.button("New Worksheet"):
     conn.create(worksheet="Orders", data=orders)
