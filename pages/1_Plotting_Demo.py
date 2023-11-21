@@ -58,7 +58,7 @@ def filter_data(df, min_year, max_year):
     return result
 
 if st.button("Hasil Range Tahun"):
-    filtered_df = filter_data(data, input1, input2)
+    filtered_df = filter_data(data, "{}".format(input1), "{}".format(input2))
     st.dataframe(filtered_df)
 
 if st.button("New Worksheet"):
