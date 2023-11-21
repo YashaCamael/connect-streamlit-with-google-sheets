@@ -3,7 +3,7 @@ import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 import locale
 
-locale.setlocale(locale.LC_NUMERIC, 'id_ID')
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 st.title("View DataBase")
 
