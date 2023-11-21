@@ -24,6 +24,13 @@ data = conn.query(sql = sql)
 st.dataframe(data)
 
 # Taking actions based on user input
+
+inputquery = st.text_input('Masukan query')
+if st.button("Input Query"):
+    result = conn.query(sql=inputquery, ttl=10)
+    st.write(result)
+
+
 if st.button("Total Pemasukan"):
     sql = 'SELECT SUM("in") as "Pemasukan" FROM Bigbooks;'
     total_pemasukan = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
