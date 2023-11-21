@@ -45,7 +45,8 @@ input1 = st.text_input('Masukan Tahun Awal')
 input2 = st.text_input('Masukan Tahun Akhir')
 
 if st.button("Hasil Range Tahun"):
-    range = conn.query("SELECT * FROM Bigbooks WHERE date = :date_year;", ttl=10, params={"date_year":"2013-03-25"})  # default ttl=3600 seconds / 60 min
+    date_year = "2013-03-25"
+    range = conn.query('SELECT * FROM Bigbooks WHERE date = @date_year;', ttl=10)  # default ttl=3600 seconds / 60 min
     st.dataframe(range)
 
 if st.button("New Worksheet"):
