@@ -50,9 +50,7 @@ def filter_data(df, min_year, max_year):
     return result
 
 if st.button("Hasil Range Tahun"):
-    min_year = "2013-03-25"
-    max_year = "2013-03-26"
-    filtered_df = filter_data(data, min_year, max_year)
+    filtered_df = filter_data(data, input1, input2)
     st.dataframe(filtered_df)
 
 if st.button("New Worksheet"):
