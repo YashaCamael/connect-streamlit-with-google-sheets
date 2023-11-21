@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
+import locale
 
 locale.setlocale(locale.LC_NUMERIC, 'id_ID')
 
