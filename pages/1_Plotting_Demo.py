@@ -18,21 +18,22 @@ df = conn.read(
 
 st.dataframe(df)
 
+hasil = pd.DataFrame(df)["in"].sum()
+st.dataframe(hasil)
+
 sql = 'SELECT * FROM Bigbooks;'
 data = conn.query(sql = sql)
-all_data = pd.DataFrame(data)
 st.dataframe(data)
 
 # Taking actions based on user input
 if st.button("Total Pemasukan"):
-    # total_pemasukan = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
-    total_pemasukan = all_data['in'].sum()
+    sql = 'SELECT SUM("in") as "Pemasukan" FROM Bigbooks;'
+    total_pemasukan = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
     st.dataframe(total_pemasukan)
 
 if st.button("Total Pengeluaran"):
-    #sql = 'SELECT SUM("out") as "Pengeluaran" FROM Bigbooks;'
-    #total_pengeluaran = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
-    total_pengeluaran = all_data['out'].sum()
+    sql = 'SELECT SUM("out") as "Pengeluaran" FROM Bigbooks;'
+    total_pengeluaran = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
     st.dataframe(total_pengeluaran)
 
 if st.button("Uang Kas Terakhir"):
