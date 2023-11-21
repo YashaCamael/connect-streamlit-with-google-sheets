@@ -44,10 +44,16 @@ if st.button("Uang Kas Terakhir"):
 input1 = st.text_input('Masukan Tahun Awal')
 input2 = st.text_input('Masukan Tahun Akhir')
 
+def filter_data(df, min_year, max_year):
+    # Menggunakan parameter variabel dalam query
+    result = df.query('@min_year <= date_year <= @max_year')
+    return result
+
 if st.button("Hasil Range Tahun"):
-    date_year = "2013-03-25"
-    range = conn.query('SELECT * FROM Bigbooks WHERE date = @date_year;', ttl=10)  # default ttl=3600 seconds / 60 min
-    st.dataframe(range)
+    min_year = "2013-03-25"
+    max_year = "2013-03-26"
+    filtered_df = filter_data(data, min_year, max_year)
+    st.dataframe(filtered_df)
 
 if st.button("New Worksheet"):
     conn.create(worksheet="Orders", data=orders)
