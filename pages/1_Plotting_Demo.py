@@ -1,9 +1,7 @@
 import streamlit as st
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
-import locale
-
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+from babel.numbers import format_decimal
 
 st.title("View DataBase")
 
@@ -42,7 +40,7 @@ if st.button("Uang Kas Terakhir"):
     sql = 'SELECT SUM("in") as "Pemasukan" FROM Bigbooks;'
     total_pemasukan = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
     total_kas = total_pemasukan.values - total_pengeluaran.values
-    st.write("Uang kas Terakhir adalah Rp.{} dengan pemasukan {} dan pengeluaran {}".format(locale.format_string("%d", total_kas[0, 0], grouping=True), total_pemasukan.values[0, 0], total_pengeluaran.values[0, 0]))
+    st.write("Uang kas Terakhir adalah Rp.{} dengan pemasukan {} dan pengeluaran {}".format(format_decimal(total_kas[0, 0], locale='id_ID'), total_pemasukan.values[0, 0], total_pengeluaran.values[0, 0]))
 
 input1 = st.text_input('Masukan Tahun Awal')
 input2 = st.text_input('Masukan Tahun Akhir')
