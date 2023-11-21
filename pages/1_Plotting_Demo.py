@@ -45,7 +45,7 @@ input1 = st.text_input('Masukan Tahun Awal')
 input2 = st.text_input('Masukan Tahun Akhir')
 
 if st.button("Hasil Range Tahun"):
-    sql = 'SELECT * FROM Bigbooks WHERE date BETWEEN ?date AND ?date;'
+    sql = 'SELECT * FROM Bigbooks WHERE date BETWEEN date = :date AND date = :date;'
     range = conn.query(sql=sql, ttl=10, params={"date":"2013-03-25","date":"2013-03-26"})  # default ttl=3600 seconds / 60 min
     st.dataframe(range)
 
