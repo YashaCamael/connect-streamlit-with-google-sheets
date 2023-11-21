@@ -46,7 +46,7 @@ input2 = st.text_input('Masukan Tahun Akhir')
 
 def filter_data(df, min_year, max_year):
     # Menggunakan parameter variabel dalam query
-    result = df.query('@min_year <= date_year <= @max_year')
+    result = df.query('@min_year <= date <= @max_year')
     return result
 
 if st.button("Hasil Range Tahun"):
