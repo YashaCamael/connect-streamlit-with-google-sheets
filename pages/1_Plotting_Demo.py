@@ -9,17 +9,14 @@ st.write("CRUD Operations:")
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Menampilkan worksheet Buku Besar
-df = conn.read(
-    worksheet="Bigbooks",
-    ttl="10m",
-    usecols=[0, 1, 2, 3, 4, 5],
-    nrows=10,
-)
+# df = conn.read(
+#     worksheet="Bigbooks",
+#     ttl="10m",
+#     usecols=[0, 1, 2, 3, 4, 5],
+#     nrows=10,
+# )
 
-st.dataframe(df)
-
-hasil = pd.DataFrame(df)["in"].sum()
-st.dataframe(hasil)
+#st.dataframe(df)
 
 sql = 'SELECT * FROM Bigbooks;'
 data = conn.query(sql = sql)
@@ -42,7 +39,7 @@ if st.button("Uang Kas Terakhir"):
     sql = 'SELECT SUM("in") as "Pemasukan" FROM Bigbooks;'
     total_pemasukan = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
     total_kas = total_pemasukan.values - total_pengeluaran.values
-    st.dataframe(total_kas)
+    st.dataframe(total_pemasukan, total_pengeluaran, total_kas)
 
 input1 = st.text_input('Masukan Tahun Awal')
 input2 = st.text_input('Masukan Tahun Akhir')
