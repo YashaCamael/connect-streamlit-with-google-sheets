@@ -20,7 +20,8 @@ st.dataframe(df)
 
 sql = 'SELECT * FROM Bigbooks;'
 data = conn.query(sql = sql)
-all_data = st.dataframe(data)
+all_data = pd.DataFrame(data)
+st.dataframe(data)
 
 # Taking actions based on user input
 if st.button("Total Pemasukan"):
