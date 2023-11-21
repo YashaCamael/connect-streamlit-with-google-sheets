@@ -39,7 +39,7 @@ if st.button("Uang Kas Terakhir"):
     sql = 'SELECT SUM("in") as "Pemasukan" FROM Bigbooks;'
     total_pemasukan = conn.query(sql=sql, ttl=10)  # default ttl=3600 seconds / 60 min
     total_kas = total_pemasukan.values - total_pengeluaran.values
-    st.write("Uang kas Terakhir adalah", total_kas)
+    st.write("Uang kas Terakhir adalah", total_kas.values)
 
 input1 = st.text_input('Masukan Tahun Awal')
 input2 = st.text_input('Masukan Tahun Akhir')
